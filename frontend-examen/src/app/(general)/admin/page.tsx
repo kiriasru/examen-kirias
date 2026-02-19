@@ -60,12 +60,27 @@ export default function page() {
     return (
         <div>
             <div>
+
                 <div>
                     <h2>Creaction Eventos</h2>
                     <div>
-                        
+                        <input type="text" placeholder="Nombre Evento" value={nombreEvento} onChange={(e) => setNombreEvento(e.target.value)} />
+                        <input type="text" placeholder="Direccion" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
+                        <input type="date" value={fechaInicio} onChange={(e) => setFechaInicio(e.target.value)} />
+                        <input type="date" value={fechaFin} onChange={(e) => setFechaFin(e.target.value)} />
+                        <button onClick={guardar}>Guardar</button>
                     </div>
                 </div>
+
+                <div>
+                    <h2>Eventos agregados</h2>
+                    <TablaEventos eventos={eventos} editar={editar} eliminar={eliminarEvento} />
+                </div>
+            </div>
+
+            <div>
+                <h2>Lista de eventos eliminados</h2>
+                <TablaEventosEliminados eventos={eventosEliminados} restablecer={restablecerEvento} />
             </div>
         </div>
     )
