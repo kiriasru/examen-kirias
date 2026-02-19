@@ -68,8 +68,21 @@ export default function ProviderEvento({children}:Plantilla) {
         setEventosSeleccionados([...eventosSeleccionados, evento]);
     }
 
-    function obtenerEventos() {
-        console.log('Holis molis');
+    async function obtenerEventos() {
+
+        try {
+            const resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/evento`);
+            const data = await resp.json();
+            setEventos(data);
+
+            const respEliminados = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/evento/eliminados`);
+            const dataEliminados = await respEliminados.json();
+            setEventosEliminados(dataEliminados);
+        } catch (error) {
+            console.log('Error', error);
+            alert('Ocurrio un error');
+        }
+
     }
 
 
